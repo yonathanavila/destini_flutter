@@ -1,23 +1,27 @@
 import 'package:destini_flutter/story_brain.dart';
 import 'package:flutter/material.dart';
 
-//TODO: Step 15 - Run the app and see if you can see the screen update with the first story. Delete this TODO if it looks as you expected.
-
-void main() => runApp(Destini());
+void main() => runApp(const Destini());
 
 class Destini extends StatelessWidget {
+  const Destini({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: StoryPage(),
+      home: const StoryPage(),
     );
   }
 }
 
-StoryBrain _storyBrain = new StoryBrain();
+StoryBrain _storyBrain = StoryBrain();
 
 class StoryPage extends StatefulWidget {
-  _StoryPageState createState() => _StoryPageState();
+  const StoryPage({super.key});
+
+  @override
+  State<StoryPage> createState() => _StoryPageState();
 }
 
 class _StoryPageState extends State<StoryPage> {
@@ -92,10 +96,9 @@ class _StoryPageState extends State<StoryPage> {
                     ),
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: const Text(
-                    //TODO: Step 14 - Use the storyBrain to get the text for choice 2.
-                    'Choice 2',
-                    style: TextStyle(
+                  child: Text(
+                    _storyBrain.getChoice2(0),
+                    style: const TextStyle(
                       fontSize: 20.0,
                     ),
                   ),
