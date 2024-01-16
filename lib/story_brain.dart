@@ -35,8 +35,9 @@ class StoryBrain {
         choice2: '')
   ];
 
-  Story getStory() {
-    return _storyData[_storyNumber];
+  String getStory() {
+    print('Story number $_storyNumber');
+    return _storyData[_storyNumber].storyTitle;
   }
 
   String getChoice1() {
@@ -47,61 +48,46 @@ class StoryBrain {
     return _storyData[_storyNumber].choice2;
   }
 
-  void nextStory(choiceNumber) {
-    if (_storyNumber == 0) {
-      if (choiceNumber == 1) {
-        setStoryNumber(_storyNumber);
-      } else if (choiceNumber == 2) {
-        setStoryNumber(1);
-      } else {
-        print('Invalid option');
-      }
-    } else if (_storyNumber == 2) {
-      if (choiceNumber == 1) {
+  void nextStory(int choiceNumber) {
+    print(_storyNumber);
+
+    if (choiceNumber == 1) {
+      if (_storyNumber == 0) {
+        setStoryNumber(2);
+      } else if (_storyNumber == 1) {
+        setStoryNumber(2);
+      } else if (_storyNumber == 2) {
         setStoryNumber(5);
-      } else if (choiceNumber == 2) {
-        setStoryNumber(4);
-      } else {
-        print('Invalid option');
-      }
-    } else if (_storyNumber == 1) {
-      if (choiceNumber == 1) {
-        if (choiceNumber == 1) {
-          setStoryNumber(5);
-          restart();
-        } else if (choiceNumber == 2) {
-          setStoryNumber(4);
-          restart();
-        } else {
-          print('Invalid option');
-        }
-      } else if (choiceNumber == 2) {
-        setStoryNumber(3);
+      } else if (_storyNumber == 3 || _storyNumber == 4 || _storyNumber == 5) {
         restart();
-      } else {
-        print('Invalid option');
       }
-    } else {
-      print('Invalid option');
+    } else if (choiceNumber == 2) {
+      if (_storyNumber == 0) {
+        setStoryNumber(1);
+      } else if (_storyNumber == 1) {
+        setStoryNumber(3);
+      } else if (_storyNumber == 2) {
+        setStoryNumber(4);
+      } else if (_storyNumber == 3 || _storyNumber == 4 || _storyNumber == 5) {
+        restart();
+      }
     }
+    print(_storyNumber);
   }
 
   void restart() {
     _storyNumber = 0;
   }
 
-  void setStoryNumber(int numberToCange){
-    _storyNumber = numberToCange;
+  void setStoryNumber(int numberToChange) {
+    _storyNumber = numberToChange;
   }
-  
-  bool buttonShouldBeVisible(){
-    if(_storyNumber == 0 || _storyNumber== 1 || _storyNumber == 2){
+
+  bool buttonShouldBeVisible() {
+    if (_storyNumber == 0 || _storyNumber == 1 || _storyNumber == 2) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
-
 }
-
-

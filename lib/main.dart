@@ -10,7 +10,7 @@ class Destini extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: const StoryPage(),
+      home: StoryPage(),
     );
   }
 }
@@ -43,7 +43,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    _storyBrain.getStory().storyTitle,
+                    _storyBrain.getStory(),
                     style: const TextStyle(
                       fontSize: 25.0,
                     ),
@@ -53,18 +53,19 @@ class _StoryPageState extends State<StoryPage> {
               Expanded(
                 flex: 2,
                 child: TextButton(
-                  style:  TextButton.styleFrom(
-                      foregroundColor: Colors.white, // Text color
-                      backgroundColor: Colors.red, // Button color
-                      shape: const BeveledRectangleBorder(borderRadius: BorderRadius.zero),
-           
-                    ),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white, // Text color
+                    backgroundColor: Colors.red, // Button color
+                    shape: const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.zero),
+                  ),
                   onPressed: () {
-                    //Choice 1 made by user.
-                    _storyBrain.nextStory(1);
+                    setState(() {
+                      _storyBrain.nextStory(1);
+                    });
                   },
                   child: Text(
-                    _storyBrain.getChoice2(),
+                    _storyBrain.getChoice1(),
                     style: const TextStyle(
                       fontSize: 20.0,
                     ),
@@ -80,14 +81,17 @@ class _StoryPageState extends State<StoryPage> {
                   visible: _storyBrain.buttonShouldBeVisible(),
                   child: TextButton(
                     onPressed: () {
-                      //Choice 2 made by user.
-                      _storyBrain.nextStory(2);
+                      setState(
+                        () {
+                          _storyBrain.nextStory(2);
+                        },
+                      );
                     },
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white, // Text color
                       backgroundColor: Colors.blue, // Button color
-                      shape: const BeveledRectangleBorder(borderRadius: BorderRadius.zero),
-           
+                      shape: const BeveledRectangleBorder(
+                          borderRadius: BorderRadius.zero),
                     ),
                     child: Text(
                       _storyBrain.getChoice2(),
@@ -104,9 +108,10 @@ class _StoryPageState extends State<StoryPage> {
       ),
     );
   }
+}
   //TODO: Step 24 - Run the app and try to figure out what code you need to add to this file to make the story change when you press on the choice buttons.
 
 //TODO: Step 29 - Run the app and test it against the Story Outline to make sure you've completed all the steps. The code for the completed app can be found here: https://github.com/londonappbrewery/destini-challenge-completed/
 
-}
+
 
