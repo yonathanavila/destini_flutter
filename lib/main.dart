@@ -67,7 +67,7 @@ class _StoryPageState extends State<StoryPage> {
                     _storyBrain.nextStory(1);
                   },
                   child: Text(
-                    _storyBrain.getChoice2(0),
+                    _storyBrain.getChoice2(),
                     style: const TextStyle(
                       fontSize: 20.0,
                     ),
@@ -96,7 +96,7 @@ class _StoryPageState extends State<StoryPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   child: Text(
-                    _storyBrain.getChoice2(0),
+                    _storyBrain.getChoice2(),
                     style: const TextStyle(
                       fontSize: 20.0,
                     ),
